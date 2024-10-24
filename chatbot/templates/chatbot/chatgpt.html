@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT</title>
+    <link rel="stylesheet" href="{% static 'chatbot/style/style.css' %}">
+</head>
+<body>
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box">
+        </div>
+
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Type a message..." autocomplete="off">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+    
+    <script src="{% static 'chatbot/js/chatgpt.js' %}"></script>
+</body>
+</html>

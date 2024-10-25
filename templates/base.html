@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatGPT</title>
-    <link rel="stylesheet" href="{% static 'chatbot/style/style.css' %}">
+    <title>{% block title %}Chatbot{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div class="chat-container">
+    {% block content %}
+    <div class="chat-container" data-api-endpoint="{% block api_endpoint %}{% endblock %}">
         <div id="chat-box" class="chat-box">
         </div>
 
@@ -17,7 +18,10 @@
             <button id="send-btn">Send</button>
         </div>
     </div>
-    
-    <script src="{% static 'chatbot/js/chatgpt.js' %}"></script>
+    {% endblock %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

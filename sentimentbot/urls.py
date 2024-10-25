@@ -3,8 +3,10 @@ from django.urls import path, include
 
 urlpatterns = [
     # Admin URL
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
 
     # Application URLs
-    path("", include("chatbot.urls")),
+    path("chatbot/", include("chatbot.urls")),
+    path("chatgpt/", include("chatgpt.urls")),
+    # path("llama", include("llama.urls"))
 ]

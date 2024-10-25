@@ -1,40 +1,15 @@
 import json
-import openai
 import re
 from django.shortcuts import render
 from transformers import pipeline
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-# OpenAI Start----------------------------------------------------------------------------------
-@csrf_exempt
-def chatgpt_view(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        user_message = data.get('message', '')
-
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": user_message},
-            ]
-        )
-
-        bot_message = response['choices'][0]['message']['content']
-
-        return JsonResponse({
-            'bot_message': bot_message
-        })
-
-    return render(request, 'chatbot/chatgpt.html')
-# OpenAI Finish----------------------------------------------------------------------------------
-
 sentiment_analyzer = pipeline(
     "sentiment-analysis", 
     model="distilbert-base-uncased-finetuned-sst-2-english", 
     revision="714eb0f",
-    device=0  # Set to CPU (-1) if GPU is not available
+    device=-1
 )
 
 chat_memory = {
@@ -55,7 +30,6 @@ def chatbot_view(request):
 
             bot_message = generate_response(user_message)
 
-            # Reset memory after 3 interactions
             if chat_memory['interaction_count'] >= 3:
                 bot_message += " How do you feel about our conversation so far?"
                 chat_memory['interaction_count'] = 0
@@ -65,7 +39,7 @@ def chatbot_view(request):
         except Exception as e:
             return JsonResponse({'bot_message': "Sorry, there was an error processing your request."}, status=500)
 
-    return render(request, 'chatbot/home.html')
+    return render(request, 'base.html')
 
 
 def generate_response(user_message):
@@ -91,8 +65,9 @@ def generate_response(user_message):
     sentiment_result = sentiment_analyzer(user_message)[0]
     sentiment = sentiment_result['label']
     score = sentiment_result['score']
-        
-    print(f"Message : {user_message} Sentiment: {sentiment}, Confidence: {score:.2f}")
+
+    #  Confidence score to the terminal
+    print(f"Sentiment: {sentiment}, Confidence: {score:.2f}")
 
     if sentiment == 'POSITIVE':
         return "I'm glad to hear that! 😊"

@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatBox = document.getElementById('chat-box');
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
+    
+    // Get API endpoint from data attribute
+    const apiEndpoint = document.querySelector('.chat-container').dataset.apiEndpoint;
 
     sendBtn.addEventListener('click', function() {
         sendMessage();
@@ -21,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         userInput.value = '';
 
-        fetch('/chatgpt/', {
+        fetch(apiEndpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -62,4 +65,3 @@ document.addEventListener('DOMContentLoaded', function() {
         return cookieValue;
     }
 });
-

@@ -53,7 +53,7 @@ def chatgpt_view(request):
         elif sentiment == 'negative':
             bot_message += " 😔"
         else:
-            bot_message += " 🙂"
+            bot_message += " 😐"
 
         return JsonResponse({
             'bot_message': bot_message

@@ -44,6 +44,6 @@ def generate_response(user_message):
     elif sentiment == 'negative':
         response += " 😔"
     else:
-        response += " 🙂"
+        response += " 😐"
 
     return response

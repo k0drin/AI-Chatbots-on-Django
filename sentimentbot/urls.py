@@ -8,5 +8,5 @@ urlpatterns = [
     # Application URLs
     path("chatbot/", include("chatbot.urls")),
     path("chatgpt/", include("chatgpt.urls")),
-    # path("llama", include("llama.urls"))
+    path("llama/", include("llama.urls"))
 ]

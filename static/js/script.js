@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     
-    // Get API endpoint from data attribute
     const apiEndpoint = document.querySelector('.chat-container').dataset.apiEndpoint;
 
     sendBtn.addEventListener('click', function() {
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (message === "") return;
 
         addMessageToChat('user', message);
-
         userInput.value = '';
 
         fetch(apiEndpoint, {
@@ -34,10 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            addMessageToChat('bot', data.bot_message);
+            addMessageToChat('bot', data.bot_message || "No response from bot");
         })
         .catch(error => {
-            addMessageToChat('bot', 'Sorry, there was an error.');
+            addMessageToChat('bot', 'Sorry, there was an error: ' + error.message);
             console.error('Error:', error);
         });
     }

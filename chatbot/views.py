@@ -66,7 +66,7 @@ def generate_response(user_message):
     sentiment = sentiment_result['label']
     score = sentiment_result['score']
 
-    #  Confidence score to the terminal
+    # Confidence score to the terminal
     print(f"Sentiment: {sentiment}, Confidence: {score:.2f}")
 
     if sentiment == 'POSITIVE':

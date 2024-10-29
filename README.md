@@ -39,7 +39,4 @@
 
 6 . Now just open it in your browser this address `http://127.0.0.1:8000/` and make your choice
 
-<div style="text-align: center;">
-    <img src="bots.png" alt="alt text">
-    <img src="chat.png" alt="alt text">
-</div>
+<img src="bots.png" alt="alt text">

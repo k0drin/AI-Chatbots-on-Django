@@ -1,7 +1,7 @@
-
 services:
   web:
-    build: .
+    build:
+      context: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
@@ -9,4 +9,6 @@ services:
       - "8000:8000"
     environment:
       DEBUG: 'True'
-
+      HUGGING_FACE_HUB_TOKEN: ${HUGGINGFACE_TOKEN}
+    env_file:
+      - .env

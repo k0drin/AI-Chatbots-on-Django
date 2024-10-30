@@ -22,10 +22,11 @@
    ```bash
     pip install -r requirements.txt
     ```
-4. Fill you .env file:
+4. Fill out your .env file:
    ```bash
    SECRET_KEY=...
    OPENAI_API_KEY...
+   HUGGINGFACE_TOKEN...
    ```
 4. Perform migrations:
    ```bash

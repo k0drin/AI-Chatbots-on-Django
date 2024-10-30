@@ -1,10 +1,19 @@
 import os
+from datetime import timedelta
+from pathlib import Path
+
 import openai
 from dotenv import load_dotenv
-from pathlib import Path
-from datetime import timedelta
+from huggingface_hub import login
+
 
 load_dotenv()
+
+huggingface_token = os.getenv("HUGGINGFACE_TOKEN")
+if huggingface_token:
+    login(token=huggingface_token)
+else:
+    print("Hugging Face token not found.")
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 

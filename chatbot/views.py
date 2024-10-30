@@ -100,6 +100,6 @@ def generate_response(user_message):
     elif sentiment == 'NEGATIVE':
         return "I'm sorry you're having trouble. 😔 How can I assist further?"
     else:
-        return "Okay! How can I help you today?"
+        return "Okay! How can I help you today? 😐"
 
     return "I'm not sure I understand. Can you rephrase?"
